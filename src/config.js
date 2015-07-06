@@ -5,7 +5,7 @@ config = {};
 
 config.appKey = 'sample_app';
 
-config.siteAddress = 'http://sample_blog.app.oceanclouds.com';
+config.siteAddress = 'http://sampleblog.app.oceanclouds.com/';
 
 config.apiResources = {
   userRegister: function() {
@@ -39,7 +39,11 @@ config.apiResources = {
 
 config.domIds = {
   mainHeader: '#main_header',
-  mainContent: '#main_content'
+  mainContent: '#main_content',
+  blogsVue: {
+    blogContentWindow: "#blog_content_window",
+    blogContentContainer: "#blog_content_container"
+  }
 };
 
 module.exports = config;

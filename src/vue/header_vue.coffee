@@ -12,8 +12,6 @@ HeaderVue = Vue.extend({
     logout: ()->
       exchangeService.removeOceanContext()
       window.location.reload()
-    addBlog:()->
-
 })
 
 module.exports = HeaderVue

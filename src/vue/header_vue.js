@@ -18,8 +18,7 @@ HeaderVue = Vue.extend({
     logout: function() {
       exchangeService.removeOceanContext();
       return window.location.reload();
-    },
-    addBlog: function() {}
+    }
   }
 });
 

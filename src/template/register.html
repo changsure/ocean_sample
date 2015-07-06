@@ -1,0 +1,31 @@
+<div id="register_div" class="uk-align-center" style="width: 500px;">
+    <form class="uk-panel uk-panel-box uk-form uk-form-stacked " name="register_form">
+        <h3 class="uk-panel-title uk-text-bold uk-margin-large-bottom uk-text-center">Register</h3>
+
+        <div class="uk-form-row" >
+            <label class="uk-form-label uk-text-large " >Email</label>
+            <input name="email" class="uk-form-large uk-form-width-large "  type="text" placeholder="" v-model="email" v-on="blur:validEmail">
+            <p name="emailMessage" class="uk-form-help-block" style="color: red"></p>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label uk-text-large ">Name</label>
+            <input name="nickname" class="uk-form-large uk-form-width-large " type="text" placeholder=""  v-model="displayName" v-on="blur:validNickName">
+            <p name="displayNameMessage" class="uk-form-help-block" style="color: red"></p>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label uk-text-large ">Password</label>
+            <input name="password" type="password" class="uk-form-large uk-form-width-large " type="text" placeholder="" v-model="password" v-on="blur:validPassword">
+            <p name="passwordMessage" class="uk-form-help-block" style="color: red"></p>
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label uk-text-large ">Password Again</label>
+            <input name="password_repeat" type="password" class="uk-form-large uk-form-width-large " type="text" placeholder="" v-model="passwordRepeat" v-on="blur:validRepeatPassword">
+            <p name="repeatPasswordMessage" class="uk-form-help-block" style="color: red"></p>
+        </div>
+
+        <div class="uk-form-row uk-container-center">
+            <a class="uk-width-2-5 uk-button uk-button-danger uk-button-large uk-align-center" v-on="click:signUp" >Sign
+                Up</a>
+        </div>
+    </form>
+</div>

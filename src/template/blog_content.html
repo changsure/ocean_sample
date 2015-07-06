@@ -1,0 +1,27 @@
+<div id="blog_content_window">
+    <form class="uk-form uk-form-horizontal">
+        <div>
+            <legend>Save a Blog</legend>
+            <div class="uk-alert uk-alert-warning" v-show="validationMessage != null">{{validationMessage}}</div>
+            <div class="uk-form-row">
+                <label class="uk-form-label">Title</label>
+
+                <div class="uk-form-controls">
+                    <input type="text" placeholder="" v-model="title" style="width: 80%">
+                </div>
+            </div>
+            <div class="uk-form-row">
+                <label class="uk-form-label">Content</label>
+
+                <div class="uk-form-controls">
+                    <textarea cols="" rows="12" placeholder="" v-model="content" style="width: 80%"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="uk-margin-large-top  uk-text-right">
+            <button class="uk-button uk-button-primary " type="button" v-on="click:save">Save</button>
+            <button class="uk-button " type="button" v-on="click:cancel">Cancel</button>
+        </div>
+
+    </form>
+</div>

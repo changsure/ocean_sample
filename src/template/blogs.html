@@ -1,0 +1,25 @@
+<div id="blogs_div" class="uk-width-3-4 uk-align-center">
+    <button class="uk-button uk-button-success uk-margin-large-bottom " v-on="click:toAddBlog"><i class="uk-icon-plus"></i> Add a Blog</button>
+    <div id="no_blogs_div" class="uk-hidden">
+        <h2 class="uk-text-center uk-margin-large-top">No Blogs.</h2>
+    </div>
+    <div v-repeat="blog:blogs">
+        <article>
+            <h1 class="uk-article-title">{{blog.title}}</h1>
+            <p class="uk-article-meta">Write on {{blog.createTime | datetime}}</p>
+            <p>{{blog.content}}</p>
+            <div>
+                <button class="uk-button uk-button-mini" v-on="click:deleteBlog(blog)"><i class="uk-icon-delete"></i> Delete</button>
+                <button class="uk-button uk-button-mini" v-on="click:toUpdateBlog(blog)"><i class="uk-icon-update"></i> Update</button>
+            </div>
+            <hr class="uk-article-divider">
+        </article>
+    </div>
+</div>
+
+<div id="blog_content_window" class="uk-modal">
+    <div class="uk-modal-dialog uk-modal-dialog-large">
+        <a class="uk-modal-close uk-close"></a>
+        <div id="blog_content_container"></div>
+    </div>
+</div>
