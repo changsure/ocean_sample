@@ -21,6 +21,7 @@
         "jquery": "~2.1.3"
     },
     "scripts": {
-        "dev": "watchify -e src/app.js -t partialify -o build/app.js"
+        "dev": "watchify -e src/app.js -t partialify -o build/app.js",
+        "oauth": "watchify -e src/oauth.js -t partialify -o build/oauth.js"
     }
 }

@@ -48,7 +48,7 @@ LoginVue = Vue.extend({
       iHeight = 450;
       iTop = (window.screen.availHeight - 30 - iHeight) / 2;
       iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
-      return weibologin = window.open('https://api.weibo.com/oauth2/authorize?client_id=4266830700&response_type=code&redirect_uri=http://mypenpal.info/oauth/oauth.html?type=weibo&func=auth', 'WeiboLogin', 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+      return weibologin = window.open('https://api.weibo.com/oauth2/authorize?client_id=418415227&response_type=code&redirect_uri=http://sampleblog.app.oceanclouds.com/oauth/oauth.html?type=weibo', 'WeiboLogin', 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
     },
     loginFb: function() {
       var iHeight, iLeft, iTop, iWidth, weibologin;
@@ -56,7 +56,7 @@ LoginVue = Vue.extend({
       iHeight = 300;
       iTop = (window.screen.availHeight - 30 - iHeight) / 2;
       iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
-      return weibologin = window.open('https://www.facebook.com/dialog/oauth?client_id=1684431935118796&display=popup&redirect_uri=http://mypenpal.info/oauth/oauth.html?type=facebook', 'WeiboLogin', 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+      return weibologin = window.open('https://www.facebook.com/dialog/oauth?client_id=1453338874969497&display=popup&redirect_uri=http://sampleblog.app.oceanclouds.com/oauth/oauth.html?type=facebook', 'FacebookLogin', 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
     }
   }
 });

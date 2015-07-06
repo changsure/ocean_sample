@@ -8,7 +8,6 @@ HeaderVue = require('./../vue/header_vue');
 LoginVue = require('./../vue/login_vue');
 
 module.exports = function() {
-  console.log('Login page');
   new HeaderVue({
     el: config.domIds.mainHeader
   });
