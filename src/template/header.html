@@ -1,0 +1,20 @@
+<div name="header" class="uk-margin-large-bottom">
+    <nav class="uk-navbar">
+        <a class="uk-navbar-brand" href="/#/index" >Sample Blog</a>
+        <div class="uk-navbar-flip">
+            <ul class="uk-navbar-nav">
+                <li class="{{userInfo.login?'uk-hidden':''}}"><a href="/#/register">Register</a></li>
+                <li class="{{userInfo.login?'uk-hidden':''}}"><a href="/#/login">Login</a></li>
+                <li class="uk-parent {{userInfo.login?'':'uk-hidden'}}" data-uk-dropdown>
+                    <a href="">Hello, {{userInfo.name}}</a>
+                    <div class="uk-dropdown uk-dropdown-navbar">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li><a v-on="click:addBlog">Add Blog</a></li>
+                            <li><a v-on="click:logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
