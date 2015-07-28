@@ -36,7 +36,7 @@ loginAccount = function(user, callback) {
     if ((response.err != null)) {
       return callback(response.err);
     } else {
-      return callback(null, response.entity.appUserAccessCode);
+      return callback(null, response.entity.accessToken);
     }
   });
 };
@@ -59,12 +59,18 @@ updateAccount = function(user, callback) {
   });
 };
 
-fetchOceanContext = function(accessCode, callback) {
+fetchOceanContext = function(endUserAccessToken, callback) {
+  var url;
+  if ((endUserAccessToken != null)) {
+    url = config.apiResources.getEndUserOceanContext();
+  } else {
+    url = config.apiResources.getAnonymousOceanContext();
+  }
   return $.ajax({
-    type: "POST",
-    url: config.apiResources.getOceanContext(),
-    data: {
-      accessCode: accessCode
+    type: "GET",
+    url: url,
+    headers: {
+      "AccessToken": endUserAccessToken
     }
   }).done(function(response) {
     var oceanContext;
@@ -93,12 +99,11 @@ authWeiboLogin = function(code, callback) {
       "Ocean-Auth": window.oceanContext.backServices.weibo.oceanAuthHeader
     }
   }).done(function(response) {
-    var appUserInfo;
+    var ref;
     if ((response.err != null)) {
       return callback(response.err);
     } else {
-      appUserInfo = response.entity;
-      return callback(null, appUserInfo);
+      return callback(null, (ref = response.entity) != null ? ref.accessToken : void 0);
     }
   });
 };
@@ -111,12 +116,11 @@ authFacebookLogin = function(code, callback) {
       "Ocean-Auth": window.oceanContext.backServices.facebook.oceanAuthHeader
     }
   }).done(function(response) {
-    var appUserInfo;
+    var ref;
     if ((response.err != null)) {
       return callback(response.err);
     } else {
-      appUserInfo = response.entity;
-      return callback(null, appUserInfo);
+      return callback(null, (ref = response.entity) != null ? ref.accessToken : void 0);
     }
   });
 };

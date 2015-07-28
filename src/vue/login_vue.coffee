@@ -16,11 +16,11 @@ LoginVue = Vue.extend({
           accountName:this.$data.email
           password:this.$data.password
           rememberMe:this.$data.rememberMe
-        exchangeService.loginAccount(loginUser,(err,appUserAccessCode)->
+        exchangeService.loginAccount(loginUser,(err,appUserAccessToken)->
           if(err?)
             $("form[name='login_form'] [name='loginMessage']").html(err.errorMessage)
           else
-            exchangeService.fetchOceanContext(appUserAccessCode,(err)->
+            exchangeService.fetchOceanContext(appUserAccessToken,(err)->
               if(err?)
                 myutils.showErrorNoticeWindow(err.errorMessage)
               else

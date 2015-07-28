@@ -17,8 +17,11 @@ config.apiResources = {
   userUpdate: function() {
     return window.oceanContext.backServices.user.api + '/update';
   },
-  getOceanContext: function() {
-    return 'https://api.oceanclouds.com/v1/app/' + config.appKey + '/getOceanContext';
+  getAnonymousOceanContext: function(endUserAccessToken) {
+    return 'https://api.oceanclouds.com/v1.0/public/ocean_context/' + config.appKey;
+  },
+  getEndUserOceanContext: function() {
+    return 'https://api.oceanclouds.com/v1.0/end/ocean_context/' + config.appKey;
   },
   authWeiboLogin: function(code) {
     return window.oceanContext.backServices.weibo.api + '/authwb/' + config.appKey + '/auth' + '?code=' + code;

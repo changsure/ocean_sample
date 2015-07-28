@@ -24,11 +24,11 @@ LoginVue = Vue.extend({
           password: this.$data.password,
           rememberMe: this.$data.rememberMe
         };
-        return exchangeService.loginAccount(loginUser, function(err, appUserAccessCode) {
+        return exchangeService.loginAccount(loginUser, function(err, appUserAccessToken) {
           if ((err != null)) {
             return $("form[name='login_form'] [name='loginMessage']").html(err.errorMessage);
           } else {
-            return exchangeService.fetchOceanContext(appUserAccessCode, function(err) {
+            return exchangeService.fetchOceanContext(appUserAccessToken, function(err) {
               if ((err != null)) {
                 return myutils.showErrorNoticeWindow(err.errorMessage);
               } else {

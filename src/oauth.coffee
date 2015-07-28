@@ -13,11 +13,11 @@ $(document).ready(()->
         alert('Login failed!')
         window.close()
       else
-        oceanService.authWeiboLogin(code,(err,appUser)->
+        oceanService.authWeiboLogin(code,(err,accessToken)->
           if(err?)
             alert(JSON.stringify(err))
           else
-            oceanService.fetchOceanContext(appUser.appUserAccessCode,(err)->
+            oceanService.fetchOceanContext(accessToken,(err)->
               if(err?)
                 alert(JSON.stringify(err))
               else
@@ -31,12 +31,12 @@ $(document).ready(()->
       if(error? && error != '')
         window.close()
       else
-        oceanService.authFacebookLogin(code,(err,appUser)->
+        oceanService.authFacebookLogin(code,(err,accessToken)->
           if(err?)
             alert('Login Failed!')
             console.log(JSON.stringify(err))
           else
-            oceanService.fetchOceanContext(appUser.appUserAccessCode,(err)->
+            oceanService.fetchOceanContext(accessToken,(err)->
               if(err?)
                 alert('Login Failed!')
                 console.log(JSON.stringify(err))

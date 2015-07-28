@@ -29,7 +29,7 @@ loginAccount = (user, callback)->
     if(response.err?)
       callback(response.err)
     else
-      callback(null, response.entity.appUserAccessCode)
+      callback(null, response.entity.accessToken)
   )
 
 updateAccount = (user,callback)->
@@ -49,12 +49,18 @@ updateAccount = (user,callback)->
   )
 
 
-fetchOceanContext = (accessCode, callback)->
-  $.ajax({
-    type: "POST",
-    url: config.apiResources.getOceanContext()
-    data: {accessCode: accessCode}
-  }).done((response)->
+fetchOceanContext = (endUserAccessToken, callback)->
+  if(endUserAccessToken?)
+    url = config.apiResources.getEndUserOceanContext()
+  else
+    url = config.apiResources.getAnonymousOceanContext()
+
+  $.ajax(
+    type: "GET"
+    url:url
+    headers:
+      "AccessToken":endUserAccessToken
+  ).done((response)->
     if(response.err?)
       callback(response.err)
     else
@@ -81,8 +87,7 @@ authWeiboLogin = (code, callback)->
     if(response.err?)
       callback(response.err)
     else
-      appUserInfo = response.entity
-      callback(null, appUserInfo)
+      callback(null, response.entity?.accessToken)
   )
 
 authFacebookLogin = (code, callback)->
@@ -96,8 +101,7 @@ authFacebookLogin = (code, callback)->
     if(response.err?)
       callback(response.err)
     else
-      appUserInfo = response.entity
-      callback(null, appUserInfo)
+      callback(null, response.entity?.accessToken)
   )
 
 saveBlog = (_id,blog,callback)->

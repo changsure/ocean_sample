@@ -7,9 +7,9 @@ registerFilter = ()->
   Vue.filter('datetime',dateTimeFilter)
 
 dateTimeFilter = (value, pattern)->
-  if(!value? || value = 0 || value = '')
+  if(!value? || value == 0 || value =='')
     return ''
-  datetime = new Date(value * 1000)
+  datetime = new Date(value)
   if(pattern?)
     formatted = dateFormat(datetime, pattern)
   else

@@ -18,8 +18,11 @@ config.apiResources = {
   userUpdate: function() {
     return window.oceanContext.backServices.user.api + '/update';
   },
-  getOceanContext: function() {
-    return 'https://api.oceanclouds.com/v1/app/' + config.appKey + '/getOceanContext';
+  getAnonymousOceanContext: function(endUserAccessToken) {
+    return 'https://api.oceanclouds.com/v1.0/public/ocean_context/' + config.appKey;
+  },
+  getEndUserOceanContext: function() {
+    return 'https://api.oceanclouds.com/v1.0/end/ocean_context/' + config.appKey;
   },
   authWeiboLogin: function(code) {
     return window.oceanContext.backServices.weibo.api + '/authwb/' + config.appKey + '/auth' + '?code=' + code;
@@ -72,11 +75,11 @@ $(document).ready(function() {
         alert('Login failed!');
         return window.close();
       } else {
-        return oceanService.authWeiboLogin(code, function(err, appUser) {
+        return oceanService.authWeiboLogin(code, function(err, accessToken) {
           if ((err != null)) {
             return alert(JSON.stringify(err));
           } else {
-            return oceanService.fetchOceanContext(appUser.appUserAccessCode, function(err) {
+            return oceanService.fetchOceanContext(accessToken, function(err) {
               if ((err != null)) {
                 return alert(JSON.stringify(err));
               } else {
@@ -93,12 +96,12 @@ $(document).ready(function() {
       if ((error != null) && error !== '') {
         return window.close();
       } else {
-        return oceanService.authFacebookLogin(code, function(err, appUser) {
+        return oceanService.authFacebookLogin(code, function(err, accessToken) {
           if ((err != null)) {
             alert('Login Failed!');
             return console.log(JSON.stringify(err));
           } else {
-            return oceanService.fetchOceanContext(appUser.appUserAccessCode, function(err) {
+            return oceanService.fetchOceanContext(accessToken, function(err) {
               if ((err != null)) {
                 alert('Login Failed!');
                 return console.log(JSON.stringify(err));
@@ -165,7 +168,7 @@ loginAccount = function(user, callback) {
     if ((response.err != null)) {
       return callback(response.err);
     } else {
-      return callback(null, response.entity.appUserAccessCode);
+      return callback(null, response.entity.accessToken);
     }
   });
 };
@@ -188,12 +191,18 @@ updateAccount = function(user, callback) {
   });
 };
 
-fetchOceanContext = function(accessCode, callback) {
+fetchOceanContext = function(endUserAccessToken, callback) {
+  var url;
+  if ((endUserAccessToken != null)) {
+    url = config.apiResources.getEndUserOceanContext();
+  } else {
+    url = config.apiResources.getAnonymousOceanContext();
+  }
   return $.ajax({
-    type: "POST",
-    url: config.apiResources.getOceanContext(),
-    data: {
-      accessCode: accessCode
+    type: "GET",
+    url: url,
+    headers: {
+      "AccessToken": endUserAccessToken
     }
   }).done(function(response) {
     var oceanContext;
@@ -222,12 +231,11 @@ authWeiboLogin = function(code, callback) {
       "Ocean-Auth": window.oceanContext.backServices.weibo.oceanAuthHeader
     }
   }).done(function(response) {
-    var appUserInfo;
+    var ref;
     if ((response.err != null)) {
       return callback(response.err);
     } else {
-      appUserInfo = response.entity;
-      return callback(null, appUserInfo);
+      return callback(null, (ref = response.entity) != null ? ref.accessToken : void 0);
     }
   });
 };
@@ -240,12 +248,11 @@ authFacebookLogin = function(code, callback) {
       "Ocean-Auth": window.oceanContext.backServices.facebook.oceanAuthHeader
     }
   }).done(function(response) {
-    var appUserInfo;
+    var ref;
     if ((response.err != null)) {
       return callback(response.err);
     } else {
-      appUserInfo = response.entity;
-      return callback(null, appUserInfo);
+      return callback(null, (ref = response.entity) != null ? ref.accessToken : void 0);
     }
   });
 };

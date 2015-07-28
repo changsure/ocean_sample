@@ -20,11 +20,11 @@ $(document).ready(function() {
         alert('Login failed!');
         return window.close();
       } else {
-        return oceanService.authWeiboLogin(code, function(err, appUser) {
+        return oceanService.authWeiboLogin(code, function(err, accessToken) {
           if ((err != null)) {
             return alert(JSON.stringify(err));
           } else {
-            return oceanService.fetchOceanContext(appUser.appUserAccessCode, function(err) {
+            return oceanService.fetchOceanContext(accessToken, function(err) {
               if ((err != null)) {
                 return alert(JSON.stringify(err));
               } else {
@@ -41,12 +41,12 @@ $(document).ready(function() {
       if ((error != null) && error !== '') {
         return window.close();
       } else {
-        return oceanService.authFacebookLogin(code, function(err, appUser) {
+        return oceanService.authFacebookLogin(code, function(err, accessToken) {
           if ((err != null)) {
             alert('Login Failed!');
             return console.log(JSON.stringify(err));
           } else {
-            return oceanService.fetchOceanContext(appUser.appUserAccessCode, function(err) {
+            return oceanService.fetchOceanContext(accessToken, function(err) {
               if ((err != null)) {
                 alert('Login Failed!');
                 return console.log(JSON.stringify(err));

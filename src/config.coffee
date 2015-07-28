@@ -10,8 +10,10 @@ config.apiResources =
     return window.oceanContext.backServices.user.api + '/login'
   userUpdate:()->
     return window.oceanContext.backServices.user.api + '/update'
-  getOceanContext:()->
-    return 'https://api.oceanclouds.com/v1/app/' + config.appKey + '/getOceanContext'
+  getAnonymousOceanContext:(endUserAccessToken)->
+    return 'https://api.oceanclouds.com/v1.0/public/ocean_context/' + config.appKey
+  getEndUserOceanContext:()->
+    return 'https://api.oceanclouds.com/v1.0/end/ocean_context/' + config.appKey
   authWeiboLogin:(code)->
     return window.oceanContext.backServices.weibo.api + '/authwb/' + config.appKey + '/auth' + '?code=' + code
   authFacebookLogin:(code)->
